@@ -1,0 +1,308 @@
+/* Define CSS variables for easy theming */
+:root {
+    --primary-color: #3f51b5; /* Deep indigo */
+    --secondary-color: #ff4081; /* Bright pink */
+    --background-color-light: #f0f0f0;
+    --background-color-dark: #121212;
+    --text-color-light: #333;
+    --text-color-dark: #e0e0e0;
+    --header-background: #282c34;
+    --border-color: #444;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --gradient-start: #3f51b5;
+    --gradient-end: #ff4081;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    width: 300px;
+    background: var(--header-background);
+    color: var(--text-color-light);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    box-shadow: 4px 0 15px var(--shadow-color);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+#sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+#sidebar header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#sidebar h1 {
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.75rem;
+    color: var(--text-color-light);
+}
+
+#create-project {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: background 0.3s, transform 0.3s;
+}
+
+#create-project:hover {
+    background: linear-gradient(135deg, #303f9f, #c51162);
+    transform: scale(1.02);
+}
+
+#theme-toggle {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    transition: color 0.3s;
+}
+
+#theme-toggle:hover {
+    color: var(--secondary-color);
+}
+
+/* Main Content Styles */
+main {
+    margin-left: 300px;
+    padding: 20px;
+    background: var(--background-color-dark);
+    border-left: 1px solid var(--border-color);
+    box-shadow: inset 0 0 10px var(--shadow-color);
+    transition: margin-left 0.3s, width 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        box-shadow: none;
+        transform: translateX(0);
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Project Grid Styles */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.project-card {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 6px 15px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.project-card img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: black;
+    transition: opacity 0.3s;
+}
+
+.project-card:hover img {
+    opacity: 0.8;
+}
+
+.project-info {
+    margin-top: 10px;
+}
+
+.project-title {
+    font-weight: 600;
+    color: var(--text-color-light);
+    margin: 0;
+    font-size: 1.4rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.project-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.project-buttons button, .more-options {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px; /* Increased padding for better button size */
+    font-size: 16px; /* Increased font size */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.project-buttons button:hover, .more-options:hover {
+    background-color: #e91e63;
+    transform: scale(1.05);
+}
+
+.more-options {
+    font-size: 24px;
+    color: var(--text-color-light);
+}
+
+.more-options:hover {
+    color: var(--secondary-color);
+}
+
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--background-color-dark);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px var(--shadow-color);
+    width: 370px; /* Increased width for more space */
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.popup-content {
+    position: relative;
+    text-align: center;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px; /* Moved further to the right */
+    font-size: 28px; /* Increased size for better visibility */
+    cursor: pointer;
+    color: var(--text-color-light);
+    transition: color 0.3s;
+}
+
+.popup-close:hover {
+    color: var(--secondary-color);
+}
+
+.popup button {
+    display: block;
+    width: calc(100% - 40px); /* Adjusted width for spacing */
+    margin: 10px auto;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 14px 20px; /* Increased padding for better button size */
+    font-size: 16px; /* Increased font size */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.popup button:hover {
+    background-color: #e91e63;
+    transform: scale(1.05);
+}
+
+/* Light mode styles */
+body.light-mode {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+}
+
+body.light-mode main {
+    background-color: white;
+}
+
+body.light-mode #sidebar {
+    background: var(--header-background);
+}
+
+body.light-mode .project-card {
+    background: linear-gradient(135deg, #e3f2fd, #f8bbd0);
+}
+
+body.light-mode .project-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode button {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode #theme-toggle {
+    color: var(--text-color-light);
+}
+
+body.light-mode #theme-toggle:hover {
+    color: var(--secondary-color);
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}

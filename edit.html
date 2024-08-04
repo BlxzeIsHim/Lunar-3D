@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Editor Interface</title>
+    <link rel="stylesheet" href="edit.css">
+</head>
+<body>
+    <header>
+        <h1>Video Editor</h1>
+        <button id="import-assets">Import Assets</button>
+    </header>
+
+    <main>
+        <div id="editor-container">
+            <div id="timeline-container">
+                <div id="timeline">
+                    <div id="playhead"></div>
+                    <div id="timeline-layers"></div>
+                </div>
+                <div id="play-stop-buttons">
+                    <button id="play-button" class="control-btn">Play</button>
+                    <button id="stop-button" class="control-btn" style="display: none;">Stop</button>
+                </div>
+            </div>
+
+            <div id="layers-container">
+                <h2>Layers</h2>
+                <div id="layers-grid"></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="layer-popup" class="popup">
+        <button id="close-popup" class="close-btn">X</button>
+        <div class="popup-controls">
+            <button id="split-layer" class="popup-btn">Split Layer</button>
+            <button id="split-delete-layer" class="popup-btn">Split & Delete Rest</button>
+            <button id="remove-split" class="popup-btn">Remove Split</button>
+        </div>
+        <div class="popup-resize">
+            <label>Start: <input type="number" id="layer-start" /></label>
+            <label>End: <input type="number" id="layer-end" /></label>
+        </div>
+    </div>
+
+    <div id="import-popup" class="popup">
+        <button id="close-import-popup" class="close-btn">X</button>
+        <input type="file" id="import-file" multiple>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

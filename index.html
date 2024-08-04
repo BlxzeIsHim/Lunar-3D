@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Project Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="sidebar">
+        <header>
+            <h1>3D Projects</h1>
+            <button id="theme-toggle">🌙</button>
+        </header>
+        <button id="create-project">Create Project</button>
+    </div>
+    <main>
+        <div id="projects" class="project-grid"></div>
+        <div id="project-popup" class="popup">
+            <div class="popup-content">
+                <span id="close-popup" class="popup-close">✖</span>
+                <button id="delete-project">Delete</button>
+                <button id="rename-project">Rename</button>
+                <button id="render-file">Render File</button>
+            </div>
+        </div>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
